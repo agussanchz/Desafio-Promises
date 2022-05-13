@@ -12,6 +12,7 @@ export default function ItemListContainer() {
     const traerProd = new Promise ((resolve, reject) => {
 
         let condition = true
+        
         setTimeout(() => {
             if(condition){
                 resolve(productos)
@@ -19,7 +20,11 @@ export default function ItemListContainer() {
                 reject("Error 404")
             }
         }, 2000)
+     
     })
+    console.log(traerProd)  
+
+    
 
     return (
         <div>ItemListContainer</div>
