@@ -7,7 +7,7 @@ function App() {
 
       <Header/>
 
-      <ItemListContainer/>
+      <ItemListContainer greeting="Bienvenidos!"/>
 
       
     </div>

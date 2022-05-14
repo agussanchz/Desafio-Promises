@@ -1,23 +1,23 @@
-import React from 'react'
-import imagen1 from '../utils/imagenes/random1.jpg'
-import imagen2 from '../utils/imagenes/random1.jpg'
-import imagen3 from '../utils/imagenes/random1.jpg'
-import imagen4 from '../utils/imagenes/random1.jpg'
+import React, { useEffect } from 'react'
+import ItemList from '../ItemList/ItemList'
+import imagen1 from "../utils/imagenes/random1.jpg"
+import imagen2 from "../utils/imagenes/random2.jpg"
+import imagen3 from "../utils/imagenes/random3.jpg"
+import imagen4 from "../utils/imagenes/random4.jpg"
 
+export default function ItemListContainer({greeting}) {
 
-export default function ItemListContainer() {
+    const [listProducts, setListProducts] = React.useState([])
 
     const products = [
-        {id: "1", name: "random1", description: "lorem insput", img: {imagen1}},
-        {id: "2", name: "random2", description: "lorem insput", img: {imagen2}},
-        {id: "3", name: "random3", description: "lorem insput", img: {imagen3}},
-        {id: "4", name: "random4", description: "lorem insput", img: {imagen4}}
+        {id: "1", name: "random1", description: "lorem insput", img: imagen1, price: "$152"},
+        {id: "2", name: "random2", description: "lorem insput", img: imagen2, price: "$723"},
+        {id: "3", name: "random3", description: "lorem insput", img: imagen3, price: "$644"},
+        {id: "4", name: "random4", description: "lorem insput", img: imagen4, price: "$105"}
     ]
-
     const getProd = new Promise ((resolve, reject) => { 
 
         let condition = true
-
         setTimeout(() => {
             if(condition){
                 resolve(products)
@@ -27,10 +27,18 @@ export default function ItemListContainer() {
         }, 2000)
     })
 
-    console.log(getProd)   
-
+    useEffect(()=> {
+        getProd
+        .then((response) => setListProducts(response))
+        .catch((error) => console.log("Error:", error))
+    }, [])
+   
+ 
 
     return (
-        <div>ItemListContainer</div>
+        <div className='container'>
+            <h1>{greeting}</h1>
+            <ItemList listProducts = {listProducts}/>         
+        </div>
     )
 }
